@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/estilo.css" />        
+
+{% endblock %}
+
+{% block content %}
+
+    {% if imagens %}
+		<div id="painel" align="center">
+		<div id="esquerda" class="alinhar img esquerda"></div>
+    	<ul  class="alinhar">
+    	{% for img in imagens %}                                                
+        	<li><img src={{ MEDIA_URL }}{{ img.imagem }} width="200" height="150"/> </li>                    
+    	{% endfor %} 
+		</ul>
+		<div id="direita"  class="alinhar img direita"></div>
+		<div id="informacao"></div>
+		</div>
+	{% else %}
+	    <div class="paginas-erro conteudo-erro">
+		    <h1>Ops!</h1>
+            <h2>Sem imagem... sem galeria.</h2>
+            <h3>Por favor, cadastrar imagem!</h3>
+        </div>
+	{% endif %}
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+(function($) {
+
+	var posicao = 0;
+	$slides  = $("ul").children('li');
+
+	clique_seta = function(incremento){
+		if((posicao + incremento)<$slides.length && (posicao + incremento)>=0){
+				$slides.css({'display' : 'none'});
+				posicao = posicao + incremento;	
+				$slides.eq(posicao).css({'display' : 'block'});
+    			$("#informacao").html((posicao+1)+' de '+$slides.length);
+		}
+	}
+
+    $("#esquerda").click(function(){ clique_seta(-1)});
+	$("#direita").click(function(){ clique_seta(+1)});
+	clique_seta(0);
+
+})(jQuery);
+</script>
+
+{% endblock %}

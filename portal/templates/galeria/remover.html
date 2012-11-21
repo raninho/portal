@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data" action="{% url remover-imagem object.id %}">                               
+    {% csrf_token %}                                               
+    <h3>Deseja realmente remover {{ object }}?</h3>                
+    <h4>Essa ação não pode ser desfeita.</h4>
+    <br>
+    <button type="submit" class="btn btn-danger">Remover</button>
+    <a class="btn" href="{% url listar-imagem %}">Voltar</a>
+</form>
+
+{% endblock %}

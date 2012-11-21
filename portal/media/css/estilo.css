@@ -1,0 +1,7 @@
+#informacao { clear:both;}
+#painel {width: 800px}
+#painel img{width: 300px}
+.alinhar{float:left;}
+.img { background-repeat: no-repeat; width: 98px; height: 98px; background-position: center; display: block; margin:50px; }
+.esquerda { background-image: url('../img/seta_esquerda.jpg'); }
+.direita  { background-image: url('../img/seta_direita.jpg'); }
